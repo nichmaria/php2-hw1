@@ -14,10 +14,10 @@
     require __DIR__ . '/classes/News.php';
 
     $new = News::getById((int)$_GET['id']);
-    //var_dump($new);
-    echo $new[0]->getHeading();
+
+    echo $new->getHeading();
     echo "<br>";
-    echo $new[0]->getContent();
+    echo $new->getContent();
     echo "<br>";
     ?>
 </body>
