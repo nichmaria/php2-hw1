@@ -1,13 +1,15 @@
 <?php
 
+namespace classes;
+
 class DataBase
 {
-    private PDO $dbh;
-    private PDOStatement|false $sth;
+    private \PDO $dbh;
+    private \PDOStatement|false $sth;
 
     public function __construct(string $dsn, string $login, string $password)
     {
-        $this->dbh = new PDO($dsn, $login, $password);
+        $this->dbh = new \PDO($dsn, $login, $password);
     }
 
     public function execute(string $sql, array $arr): bool
@@ -15,11 +17,11 @@ class DataBase
         $this->sth = $this->dbh->prepare($sql);
         try {
             $this->sth->execute($arr);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             echo 'Выброшено исключение: ',  $e->getMessage(), "\n";
         }
 
-        return $this->sth->execute();
+        return true;
     }
 
     public function query(string $sql, string $class, array $arr): array
@@ -27,7 +29,7 @@ class DataBase
         $this->sth = $this->dbh->prepare($sql);
         try {
             $this->sth->execute($arr);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             echo 'Выброшено исключение: ',  $e->getMessage(), "\n";
         }
 

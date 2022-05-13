@@ -1,12 +1,12 @@
 <?php
 
-require __DIR__ . '/Model.php';
+namespace classes;
+
 class News extends Model
 {
     const TABLE = 'news';
-    public $id;
-    private $heading;
-    private $content;
+    protected $heading;
+    protected $content;
 
     public function getHeading(): string
     {
@@ -16,5 +16,15 @@ class News extends Model
     public function getContent(): string
     {
         return $this->content;
+    }
+
+    public function setHeading(string $heading)
+    {
+        $this->heading = $heading;
+    }
+
+    public function setContent(string $content)
+    {
+        $this->content = $content;
     }
 }

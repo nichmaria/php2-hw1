@@ -1,6 +1,7 @@
 <?php
 
-require __DIR__ . '/Model.php';
+namespace classes;
+
 class User extends Model
 {
     const TABLE = 'users';
