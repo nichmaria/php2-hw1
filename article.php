@@ -20,11 +20,7 @@
     use classes\DataBase;
 
     $config = Config::readConfig();
-    $dsn = 'mysql:host=' . $config->info[0] . ';dbname=' . $config->info[1];
-    $login = $config->info[2];
-    $password = $config->info[3];
-
-    $database = new DataBase($dsn, $login, '');
+    $database = new DataBase($config->dsn, $config->login, '');
 
     $new = News::getById((int)$_GET['id'], $database);
 

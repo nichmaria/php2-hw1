@@ -10,11 +10,8 @@ use classes\News;
 use classes\Config;
 
 $config = Config::readConfig();
-$dsn = 'mysql:host=' . $config->info[0] . ';dbname=' . $config->info[1];
-$login = $config->info[2];
-$password = $config->info[3];
 
-$database = new DataBase($dsn, $login, '');
+$database = new DataBase($config->dsn, $config->login, '');
 
 $news = News::findAll($database);
 
