@@ -12,7 +12,7 @@
     <?php
 
     foreach ($news as $new) { ?>
-        <a href="article.php?id=<?php echo $new->id; ?>">
+        <a href="show.php?id=<?php echo $new->id; ?>">
             <?php echo $new->getHeading();  ?>
         </a>
     <?php
@@ -20,6 +20,8 @@
         echo $new->getContent();
         echo "<br>";
     } ?>
+    <p><a href="create.php">go to create page</a></p>
 </body>
+
 
 </html>

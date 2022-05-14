@@ -13,14 +13,14 @@ class Config
     {
     }
 
-    public static function readConfig()
+    public static function make(): Config
     {
         if (Config::$config == null) {
             Config::$config = new Config;
-            $info = file(__DIR__ . '\..\config.txt', FILE_IGNORE_NEW_LINES);
-            Config::$config->dsn = 'mysql:host=' . $info[0] . ';dbname=' . $info[1];
-            Config::$config->login = $info[2];
-            Config::$config->password = $info[3];
+            include __DIR__ . '/../config.php';
+            Config::$config->dsn = 'mysql:host=' . $info['host'] . ';dbname=' . $info['dbname'];
+            Config::$config->login = $info['login'];
+            Config::$config->password = $info['password'];
         }
 
         return Config::$config;

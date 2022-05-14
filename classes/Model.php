@@ -10,23 +10,20 @@ abstract class Model
 
     public static function findAll(DataBase $database): array
     {
-        //$database = new DataBase('mysql:host=127.0.0.1;dbname=test', 'root', '');
         $sql = 'SELECT * FROM ' . static::TABLE;
         return $database->query($sql, static::class, []);
     }
 
     public static function getById(int $id, DataBase $database): static
     {
-        $arr = [':id' => $id];
-        //$database = new DataBase('mysql:host=127.0.0.1;dbname=test', 'root', '');
+        $substitution = [':id' => $id];
         $sql = 'SELECT * FROM ' . static::TABLE . ' WHERE id = :id';
-        $array = $database->query($sql, static::class, $arr);
+        $array = $database->query($sql, static::class, $substitution);
         return $array[0];
     }
 
     public function insert(DataBase $database): bool
     {
-        //$database = new DataBase('mysql:host=127.0.0.1;dbname=test', 'root', '');
         $keys = [];
         $preparation = [];
         $substitutions = [];
@@ -43,6 +40,35 @@ abstract class Model
         $sql = 'INSERT INTO ' . static::TABLE
             . ' (' . implode(', ', $keys) . ') VALUES (' . implode(', ', $preparation) . ')';
 
-        return $database->execute($sql,  $substitutions);
+        $database->execute($sql,  $substitutions);
+
+        $sql = 'SELECT *
+        FROM ' . static::TABLE .
+            ' ORDER BY id DESC
+        LIMIT 1';
+
+        $array = $database->query($sql, static::class, []);
+        $this->id = $array[0]->id;
+        return true;
+    }
+
+    public function update(DataBase $database): bool
+    {
+        $keys = [];
+        $preparation = [];
+        $substitutions = [];
+
+        foreach ($this as $key => $value) {
+            if ($key == 'id') {
+                continue;
+            }
+            $keys[] = $key;
+            $preparation[] = $key . '= :' . $key;
+            $substitutions[':' . $key] = $value;
+        }
+
+        $sql = 'UPDATE ' .  static::TABLE . ' SET ' . implode(', ', $preparation) . ' WHERE  `id`=' . $this->id;
+        $database->execute($sql,  $substitutions);
+        return true;
     }
 }
