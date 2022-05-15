@@ -17,7 +17,7 @@ class Config
     {
         if (Config::$config == null) {
             Config::$config = new Config;
-            include __DIR__ . '/../config.php';
+            $info = include __DIR__ . '/../config.php';
             Config::$config->dsn = 'mysql:host=' . $info['host'] . ';dbname=' . $info['dbname'];
             Config::$config->login = $info['login'];
             Config::$config->password = $info['password'];
