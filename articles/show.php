@@ -1,11 +1,12 @@
 <?php
 
-require __DIR__ . '/../classes/Model.php';
-require __DIR__ . '/../classes/News.php';
+require __DIR__ . '/../autoload.php';
 require __DIR__ . '/../createdatabase.php';
 
 use classes\News;
+use classes\View;
 
-$new = News::getById((int)$_GET['id'], $database);
-
-include __DIR__ . '\..\templates\article.php';
+$view = new View;
+$view->new = News::getById((int)$_GET['id'], $database);
+$view->display(__DIR__ . '\..\templates\article.php');
+//include __DIR__ . '\..\templates\article.php';

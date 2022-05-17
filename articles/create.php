@@ -15,8 +15,7 @@
         <p style="text-indent:210px"><input type="submit" value="submit"></p>
     </form>
     <?php
-    require __DIR__ . '/../classes/Model.php';
-    require __DIR__ . '/../classes/News.php';
+    require __DIR__ . '/../autoload.php';
     require __DIR__ . '/../createdatabase.php';
 
     use classes\News;
