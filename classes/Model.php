@@ -14,12 +14,17 @@ abstract class Model
         return $database->query($sql, static::class, []);
     }
 
-    public static function getById(int $id, DataBase $database): static
+    public static function getById(int|null $id, DataBase $database): static|null
     {
         $substitution = [':id' => $id];
         $sql = 'SELECT * FROM ' . static::TABLE . ' WHERE id = :id';
         $array = $database->query($sql, static::class, $substitution);
-        return $array[0];
+        if (!empty($array)) {
+            return $array[0];
+        }
+        if (empty($array)) {
+            return null;
+        }
     }
 
     public function isnew(DataBase $database): bool

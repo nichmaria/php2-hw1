@@ -15,7 +15,13 @@
 
 <body>
     <p> <?php echo $new->getHeading(); ?></p>
+    <p> <?php if (!empty($new->author)) {
+            echo 'written by ' . $new->author->getName();
+        } ?>
+
+    </p>
     <p> <?php echo $new->getContent(); ?></p>
+
     <p>
         <a href="edit.php?id=<?php echo $new->id; ?>">
             go to edit page

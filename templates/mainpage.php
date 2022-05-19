@@ -15,7 +15,6 @@
 
 <body>
     <?php
-
     foreach ($news as $new) { ?>
         <p>
             <a href="show.php?id=<?php echo $new->id; ?>">

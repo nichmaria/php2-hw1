@@ -19,7 +19,7 @@ trait DinamicProperties
     // not sure if its right
     public function __isset(string $key): bool
     {
-        if ($this->data[$key] != null) {
+        if ($this->data[$key] != null || $key == 'author') {
             echo 'exists';
             return true;
         }
