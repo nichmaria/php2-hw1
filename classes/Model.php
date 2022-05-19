@@ -5,17 +5,23 @@ namespace classes;
 abstract class Model
 {
     const TABLE = '';
-    public $id;
+    public int $id;
 
 
-    public static function findAll(DataBase $database): array
+    public static function findAll(): array
     {
+        $config = Config::make();
+        $database = DataBase::make($config->dsn, $config->login, $config->password);
+
         $sql = 'SELECT * FROM ' . static::TABLE;
         return $database->query($sql, static::class, []);
     }
 
-    public static function getById(int|null $id, DataBase $database): static|null
+    public static function getById(int|null $id): static|null
     {
+        $config = Config::make();
+        $database = DataBase::make($config->dsn, $config->login, $config->password);
+
         $substitution = [':id' => $id];
         $sql = 'SELECT * FROM ' . static::TABLE . ' WHERE id = :id';
         $array = $database->query($sql, static::class, $substitution);
@@ -27,8 +33,11 @@ abstract class Model
         }
     }
 
-    public function isnew(DataBase $database): bool
+    public function isnew(): bool
     {
+        $config = Config::make();
+        $database = DataBase::make($config->dsn, $config->login, $config->password);
+
         $substitution = [':heading' => $this->heading];
         $sql = 'SELECT * FROM ' . static::TABLE . ' WHERE heading = :heading';
         $array = $database->query($sql, static::class, $substitution);
@@ -40,16 +49,22 @@ abstract class Model
         }
     }
 
-    public static function deleteById(int $id, DataBase $database): bool
+    public static function deleteById(int $id): bool
     {
+        $config = Config::make();
+        $database = DataBase::make($config->dsn, $config->login, $config->password);
+
         $substitution = [':id' => $id];
         $sql = 'DELETE FROM ' . static::TABLE . ' WHERE id = :id';
         $array = $database->execute($sql, $substitution);
         return true;
     }
 
-    public function insert(DataBase $database): bool
+    public function insert(): bool
     {
+        $config = Config::make();
+        $database = DataBase::make($config->dsn, $config->login, $config->password);
+
         $keys = [];
         $preparation = [];
         $substitutions = [];
@@ -78,8 +93,11 @@ abstract class Model
         return true;
     }
 
-    public function update(DataBase $database): bool
+    public function update(): bool
     {
+        $config = Config::make();
+        $database = DataBase::make($config->dsn, $config->login, $config->password);
+
         $keys = [];
         $preparation = [];
         $substitutions = [];

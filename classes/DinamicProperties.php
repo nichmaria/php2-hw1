@@ -4,7 +4,7 @@ namespace classes;
 
 trait DinamicProperties
 {
-    public $data = [];
+    public array $data = [];
 
     public function __set(string $key, $value): void
     {
@@ -19,7 +19,7 @@ trait DinamicProperties
     // not sure if its right
     public function __isset(string $key): bool
     {
-        if ($this->data[$key] != null || $key == 'author') {
+        if ($this->data[$key] != null) {
             echo 'exists';
             return true;
         }

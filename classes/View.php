@@ -10,7 +10,6 @@ class View
     {
         foreach ($this->data as $key => $value) {
             $$key = $value;
-            //var_dump($$key);
         }
         ob_start();
         include $template;

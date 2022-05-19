@@ -11,9 +11,17 @@
 <body>
     <?php
     require __DIR__ . '/../autoload.php';
-    require __DIR__ . '/../createdatabase.php';
+    require __DIR__ . '/../classes/DataBase.php';
+    require __DIR__ . '/../classes/Config.php';
 
+    use classes\Config;
+    use classes\DataBase;
     use classes\News;
+
+    $config = Config::make();
+    $database = DataBase::make($config->dsn, $config->login, $config->password);
+
+
 
     $new = News::getById((int)$_GET['id'], $database);
     if (!empty($_POST['heading'])) {

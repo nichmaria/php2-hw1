@@ -5,9 +5,9 @@ namespace classes;
 class Config
 {
     public static $config;
-    public $dsn;
-    public $login;
-    public $password;
+    public string $dsn;
+    public string $login;
+    public string $password;
 
     private function __construct()
     {

@@ -5,15 +5,16 @@ namespace classes;
 class News extends Model
 {
     const TABLE = 'news';
-    protected $heading;
-    protected $content;
-    public $author_id;
+    protected string $heading;
+    protected string $content;
+    public int|null $author_id;
+    //do not change accessability of heading and content
 
     public function __get(string $key)
     {
         if ($key == 'author') {
             $config = Config::make();
-            $database = new DataBase($config->dsn, $config->login, $config->password);
+            $database = DataBase::make($config->dsn, $config->login, $config->password);
 
             return Author::getById($this->author_id, $database);
         }
@@ -32,8 +33,11 @@ class News extends Model
         }
     }
 
-    public static function delete(array $list, DataBase $database): void
+    public static function delete(array $list): void
     {
+        $config = Config::make();
+        $database = DataBase::make($config->dsn, $config->login, $config->password);
+
         foreach ($list as $key => $value) {
             News::deleteById($key, $database);
             echo 'article is successfully deleted';

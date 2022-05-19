@@ -6,10 +6,21 @@ class DataBase
 {
     private \PDO $dbh;
     private \PDOStatement|false $sth;
+    public static $database;
 
-    public function __construct(string $dsn, string $login, string $password)
+    private function __construct()
     {
-        $this->dbh = new \PDO($dsn, $login, $password);
+    }
+
+    public static function make(string $dsn, string $login, string $password): DataBase
+    {
+        if (DataBase::$database == null) {
+            $config = Config::make();
+            DataBase::$database = new DataBase($config->dsn, $config->login, $config->password);
+            DataBase::$database->dbh = new \PDO($dsn, $login, $password);
+        }
+
+        return DataBase::$database;
     }
 
     public function execute(string $sql, array $arr): bool
