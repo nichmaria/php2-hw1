@@ -42,4 +42,12 @@ class Controller
 
         $this->view->display(__DIR__ . '\..\templates\create.php');
     }
+
+    private function actionEdit(): void
+    {
+        $this->view->new = News::getById((int)$_GET['id']);
+        $this->view->new->edit($_POST);
+
+        $this->view->display(__DIR__ . '\..\templates\edit.php');
+    }
 }

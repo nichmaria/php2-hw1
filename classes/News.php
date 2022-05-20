@@ -54,16 +54,16 @@ class News extends Model
             echo 'your record is successfully saved!';
         }
     }
-    /*
+
     public function edit(array $income): void
     {
-        if (!empty($income['heading']) && !empty($income['content'])) {
-            $this->new->setHeading($income['heading']);
-            $this->new->setContent($income['content']);
-            $this->new->insert();
+        if (!empty($income['heading'])) {
+            $this->setHeading($income['heading']);
+            $this->setContent($income['content']);
+            $this->update();
             echo 'your record is successfully saved!';
         }
-    }*/
+    }
 
     public function getHeading(): string
     {
