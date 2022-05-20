@@ -44,6 +44,27 @@ class News extends Model
         }
     }
 
+    public static function create(array $income): void
+    {
+        $new = new News();
+        if (!empty($income['heading'])) {
+            $new->setHeading($income['heading']);
+            $new->setContent($income['content']);
+            $new->insert();
+            echo 'your record is successfully saved!';
+        }
+    }
+    /*
+    public function edit(array $income): void
+    {
+        if (!empty($income['heading']) && !empty($income['content'])) {
+            $this->new->setHeading($income['heading']);
+            $this->new->setContent($income['content']);
+            $this->new->insert();
+            echo 'your record is successfully saved!';
+        }
+    }*/
+
     public function getHeading(): string
     {
         return $this->heading;
