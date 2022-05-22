@@ -4,8 +4,6 @@ namespace controllers;
 
 use classes\News;
 use classes\View;
-use classes\Config;
-use classes\DataBase;
 
 class Controller
 {

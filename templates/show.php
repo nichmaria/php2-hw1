@@ -23,7 +23,7 @@
     <p> <?php echo $new->getContent(); ?></p>
 
     <p>
-        <a href="edit.php?id=<?php echo $new->id; ?>">
+        <a href="index.php?action=Edit&id=<?php echo $new->id; ?>">
             go to edit page
         </a>
     </p>
