@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <form action="index.php?action=Create" method="post">
+    <form action="Create" method="post">
         <p><textarea rows="2" cols="20" name="heading">write heading</textarea></p>
         <p><textarea rows="11" cols="60" name="content">write content</textarea></p>
         <p style="text-indent:210px"><input type="submit" value="submit"></p>

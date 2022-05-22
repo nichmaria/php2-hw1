@@ -4,12 +4,9 @@ require __DIR__ . '/../autoload.php';
 
 use controllers\Controller;
 
-$controller = new Controller();
+$arr = explode('/', $_SERVER['REQUEST_URI']);
+$info = explode('?', $arr[2]);
 
-if (!empty($_GET['action'])) {
-    $action = $_GET['action'];
-}
-if (empty($_GET['action'])) {
-    $action = 'Index';
-}
+$controller = new Controller();
+$action = $info[0] ?: 'Index';
 $controller->action($action);

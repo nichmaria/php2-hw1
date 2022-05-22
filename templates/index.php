@@ -17,7 +17,7 @@
     <?php
     foreach ($news as $new) { ?>
         <p>
-            <a href="index.php?action=Show&id=<?php echo $new->id; ?>">
+            <a href="Show?id=<?php echo $new->id; ?>">
                 <?php echo $new->getHeading();  ?>
             </a>
         </p>
@@ -25,7 +25,7 @@
 
     <?php } ?>
     <p>
-        <a href="index.php?action=Create">
+        <a href="Create">
             go to create page
         </a>
     </p>
