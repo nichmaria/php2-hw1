@@ -2,11 +2,12 @@
 
 require __DIR__ . '/../autoload.php';
 
+use classes\Url;
 use controllers\Controller;
 
-$arr = explode('/', $_SERVER['REQUEST_URI']);
-$info = explode('?', $arr[2]);
+$url = Url::make();
+$id = $url->getId();
+$action = $url->getAction();
 
-$controller = new Controller();
-$action = $info[0] ?: 'Index';
+$controller = new Controller($id);
 $controller->action($action);

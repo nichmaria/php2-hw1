@@ -8,10 +8,12 @@ use classes\View;
 class Controller
 {
     private View $view;
+    private int $id;
 
-    public function __construct()
+    public function __construct(int $id)
     {
         $this->view = new View();
+        $this->id = $id;
     }
 
     public function action(string $name)
@@ -30,7 +32,7 @@ class Controller
 
     private function actionShow(): void
     {
-        $this->view->new = News::getById((int)$_GET['id']);
+        $this->view->new = News::getById($this->id);
         $this->view->display(__DIR__ . '\..\templates\show.php');
     }
 
@@ -43,7 +45,7 @@ class Controller
 
     private function actionEdit(): void
     {
-        $this->view->new = News::getById((int)$_GET['id']);
+        $this->view->new = News::getById($this->id);
         $this->view->new->edit($_POST);
 
         $this->view->display(__DIR__ . '\..\templates\edit.php');
