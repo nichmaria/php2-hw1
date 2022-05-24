@@ -29,7 +29,7 @@ abstract class Model
             return $array[0];
         }
         if (empty($array)) {
-            return null;
+            throw new NotFoundExc();
         }
     }
 

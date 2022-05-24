@@ -2,6 +2,8 @@
 
 namespace classes;
 
+use PDOException;
+
 class DataBase
 {
     private \PDO $dbh;
@@ -17,7 +19,11 @@ class DataBase
         if (DataBase::$database == null) {
             $config = Config::make();
             DataBase::$database = new DataBase($config->dsn, $config->login, $config->password);
-            DataBase::$database->dbh = new \PDO($dsn, $login, $password);
+            try {
+                DataBase::$database->dbh = new \PDO($dsn, $login, $password);
+            } catch (PDOException $e) {
+                throw new NotFoundExc('incorrect parameters for accessing the database');
+            }
         }
 
         return DataBase::$database;
@@ -28,8 +34,8 @@ class DataBase
         $this->sth = $this->dbh->prepare($sql);
         try {
             $this->sth->execute($arr);
-        } catch (\Exception $e) {
-            echo 'Выброшено исключение: ',  $e->getMessage(), "\n";
+        } catch (PDOException $e) {
+            throw new DbException('incorrect query to the database');
         }
 
         return true;
@@ -40,8 +46,8 @@ class DataBase
         $this->sth = $this->dbh->prepare($sql);
         try {
             $this->sth->execute($arr);
-        } catch (\Exception $e) {
-            echo 'Выброшено исключение: ',  $e->getMessage(), "\n";
+        } catch (PDOException $e) {
+            throw new DbException('incorrect query to the database');
         }
 
         return $this->sth->fetchAll(\PDO::FETCH_CLASS, $class);
