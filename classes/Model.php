@@ -28,8 +28,11 @@ abstract class Model
         if (!empty($array)) {
             return $array[0];
         }
-        if (empty($array)) {
+        if (empty($array) && static::class == 'classes\News') {
             throw new NotFoundExc();
+        }
+        if (empty($array) && static::class == 'classes\Author') {
+            return null;
         }
     }
 

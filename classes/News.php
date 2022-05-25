@@ -46,22 +46,41 @@ class News extends Model
 
     public static function create(array $income): void
     {
-        $new = new News();
-        if (!empty($income['heading'])) {
-            $new->setHeading($income['heading']);
-            $new->setContent($income['content']);
+        if (!empty($income)) {
+            $new = new News();
+            $new->heading = $income['heading'];
+            $new->content = $income['content'];
+
+            $ex = new MultiException();
+            if ($income['heading'] == null) {
+                $ex[] =  new \Exception('empty heading!');
+            }
+            if ($income['content'] == null) {
+                $ex[] = new \Exception('empty content!');
+            }
             $new->insert();
             echo 'your record is successfully saved!';
+            throw $ex;
         }
     }
 
     public function edit(array $income): void
     {
-        if (!empty($income['heading'])) {
-            $this->setHeading($income['heading']);
-            $this->setContent($income['content']);
+        if (!empty($income)) {
+
+            $this->heading = $income['heading'];
+            $this->content = $income['content'];
             $this->update();
             echo 'your record is successfully saved!';
+
+            $ex = new MultiException();
+            if ($income['heading'] == null) {
+                $ex[] =  new \Exception('empty heading!');
+            }
+            if ($income['content'] == null) {
+                $ex[] = new \Exception('empty content!');
+            }
+            throw $ex;
         }
     }
 

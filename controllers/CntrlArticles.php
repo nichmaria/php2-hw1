@@ -2,6 +2,7 @@
 
 namespace controllers;
 
+use classes\MultiException;
 use classes\News;
 use classes\View;
 
@@ -23,7 +24,12 @@ class CntrlArticles extends Controller
 
     protected function actionCreate(): void
     {
-        News::create($_POST);
+        try {
+            News::create($_POST);
+            $this->view->errors = [];
+        } catch (MultiException $e) {
+            $this->view->errors = $e;
+        }
 
         $this->view->display(__DIR__ . '\..\templates\create.php');
     }
@@ -31,7 +37,12 @@ class CntrlArticles extends Controller
     protected function actionEdit(): void
     {
         $this->view->new = News::getById($this->id);
-        $this->view->new->edit($_POST);
+        try {
+            $this->view->new->edit($_POST);
+            $this->view->errors = [];
+        } catch (MultiException $e) {
+            $this->view->errors = $e;
+        }
 
         $this->view->display(__DIR__ . '\..\templates\edit.php');
     }

@@ -9,6 +9,13 @@
 </head>
 
 <body>
+    <p>
+        <?php
+        foreach ($errors as $error) {
+            echo $error->getMessage();
+        }
+        ?>
+    </p>
     <form action="create" method="post">
         <p><textarea rows="2" cols="20" name="heading">write heading</textarea></p>
         <p><textarea rows="11" cols="60" name="content">write content</textarea></p>

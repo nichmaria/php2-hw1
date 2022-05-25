@@ -22,7 +22,7 @@ class DataBase
             try {
                 DataBase::$database->dbh = new \PDO($dsn, $login, $password);
             } catch (PDOException $e) {
-                throw new NotFoundExc('incorrect parameters for accessing the database');
+                throw new DbException('incorrect parameters for accessing the database');
             }
         }
 
