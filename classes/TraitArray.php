@@ -4,7 +4,7 @@ namespace classes;
 
 trait TraitArray
 {
-    protected $data = [];
+    protected array $data = [];
 
     public function offsetExists(mixed $offset): bool
     {

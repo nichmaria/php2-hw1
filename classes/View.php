@@ -18,7 +18,7 @@ class View
         return $content;
     }
 
-    public function display(string $template)
+    public function display(string $template): void
     {
         echo $this->render($template);
     }

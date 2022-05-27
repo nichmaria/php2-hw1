@@ -11,7 +11,7 @@ trait DinamicProperties
         $this->data[$key] = $value;
     }
 
-    public function __get(string $key)
+    public function __get(string $key): mixed
     {
         return $this->data[$key];
     }

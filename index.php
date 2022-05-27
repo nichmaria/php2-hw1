@@ -7,6 +7,8 @@ use classes\NotFoundExc;
 use classes\Url;
 use classes\View;
 
+//$log = new Psr\Log\InvalidArgumentException;
+
 $url = Url::make();
 $view = new View;
 

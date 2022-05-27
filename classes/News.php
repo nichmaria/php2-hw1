@@ -10,7 +10,7 @@ class News extends Model
     public int|null $author_id;
     //do not change accessability of heading and content
 
-    public function __get(string $key)
+    public function __get(string $key): Author|null
     {
         if ($key == 'author') {
             $config = Config::make();
@@ -94,12 +94,12 @@ class News extends Model
         return $this->content;
     }
 
-    public function setHeading(string $heading)
+    public function setHeading(string $heading): void
     {
         $this->heading = $heading;
     }
 
-    public function setContent(string $content)
+    public function setContent(string $content): void
     {
         $this->content = $content;
     }

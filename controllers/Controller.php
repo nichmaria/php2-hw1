@@ -2,7 +2,6 @@
 
 namespace controllers;
 
-use classes\News;
 use classes\View;
 
 class Controller

@@ -4,7 +4,6 @@ namespace controllers;
 
 use classes\MultiException;
 use classes\News;
-use classes\View;
 
 class CntrlArticles extends Controller
 {
