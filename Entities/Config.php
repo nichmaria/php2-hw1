@@ -1,10 +1,10 @@
 <?php
 
-namespace classes;
+namespace Entities;
 
 class Config
 {
-    public static $config;
+    public static Config|null $config = null;
     public string $dsn;
     public string $login;
     public string $password;

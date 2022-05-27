@@ -1,8 +1,8 @@
 <?php
 
-namespace classes;
+namespace Traits;
 
-trait DinamicProperties
+trait DinamicPropertiesTrait
 {
     public array $data = [];
 

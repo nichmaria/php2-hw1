@@ -1,11 +1,12 @@
 <?php
 
-namespace controllers;
+namespace Controllers;
 
-use classes\MultiException;
-use classes\News;
+use Exceptions\MultiException;
+use Entities\News;
+use Exceptions\NotFoundException;
 
-class CntrlArticles extends Controller
+class ArticlesController extends Controller
 {
     protected function actionIndex(): void
     {
@@ -17,7 +18,12 @@ class CntrlArticles extends Controller
 
     protected function actionShow(): void
     {
-        $this->view->new = News::getById($this->id);
+        try {
+            $this->view->new = News::getById($this->id);
+        } catch (NotFoundException $exeption) {
+            throw new \Exception('page not found', 404);
+        }
+
         $this->view->display(__DIR__ . '\..\templates\show.php');
     }
 

@@ -1,6 +1,8 @@
 <?php
 
-namespace classes;
+namespace Entities;
+
+use Exceptions\NotFoundException;
 
 abstract class Model
 {
@@ -29,7 +31,7 @@ abstract class Model
             return $array[0];
         }
         if (empty($array) && static::class == 'classes\News') {
-            throw new NotFoundExc();
+            throw new NotFoundException();
         }
         if (empty($array) && static::class == 'classes\Author') {
             return null;

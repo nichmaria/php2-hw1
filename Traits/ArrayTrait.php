@@ -1,8 +1,8 @@
 <?php
 
-namespace classes;
+namespace Traits;
 
-trait TraitArray
+trait ArrayTrait
 {
     protected array $data = [];
 

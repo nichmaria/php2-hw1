@@ -1,6 +1,6 @@
 <?php
 
-namespace classes;
+namespace Entities;
 
 class Author extends Model
 {

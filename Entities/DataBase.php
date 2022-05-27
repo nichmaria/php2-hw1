@@ -1,14 +1,15 @@
 <?php
 
-namespace classes;
+namespace Entities;
 
 use PDOException;
+use Exceptions\DbException;
 
 class DataBase
 {
     private \PDO $dbh;
     private \PDOStatement|false $sth;
-    public static $database;
+    public static DataBase|null $database = null;
 
     private function __construct()
     {

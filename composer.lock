@@ -4,11 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3626f3ff37b07fb3cf95af67428073be",
+    "content-hash": "d49e4e9e1d7c0a257de1bdf135036473",
     "packages": [
         {
             "name": "psr/log",
-            "version": "dev-master",
+            "version": "3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/log.git",
@@ -23,7 +23,6 @@
             "require": {
                 "php": ">=8.0.0"
             },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -61,12 +60,10 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "psr/log": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.1.0"
 }

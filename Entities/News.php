@@ -1,6 +1,8 @@
 <?php
 
-namespace classes;
+namespace Entities;
+
+use Exceptions\MultiException;
 
 class News extends Model
 {

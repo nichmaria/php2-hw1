@@ -2,12 +2,12 @@
 
 require __DIR__ . '/autoload.php';
 
-use classes\DbException;
-use classes\NotFoundExc;
-use classes\Url;
-use classes\View;
+use Exceptions\DbException;
+use Exceptions\NotFoundException;
+use Entities\Url;
+use Entities\View;
+use Psr\Log;
 
-//$log = new Psr\Log\InvalidArgumentException;
 
 $url = Url::make();
 $view = new View;
@@ -15,15 +15,15 @@ $view = new View;
 $id = $url->getId();
 $action = $url->getAction();
 $controller = ucfirst($url->getController());
-$cntrlName = 'controllers\Cntrl' . $controller;
+$controllerName = 'Controllers\\' . $controller . 'Controller';
 
-$controller = new $cntrlName($id);
+$controller = new $controllerName($id);
 try {
     $controller->action($action);
 } catch (DbException $exc) {
     $view->exception = $exc->getMessage();
     $view->display(__DIR__ . '\templates\exception.php');
-} catch (NotFoundExc $exc) {
+} catch (NotFoundException $exc) {
     $view->exception = $exc->getMessage();
     $view->display(__DIR__ . '\templates\exception.php');
 }

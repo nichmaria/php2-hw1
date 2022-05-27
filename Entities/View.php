@@ -1,10 +1,12 @@
 <?php
 
-namespace classes;
+namespace Entities;
+
+use Traits\DinamicPropertiesTrait;
 
 class View
 {
-    use DinamicProperties;
+    use DinamicPropertiesTrait;
 
     public function render(string $template): string
     {

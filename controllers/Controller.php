@@ -1,8 +1,8 @@
 <?php
 
-namespace controllers;
+namespace Controllers;
 
-use classes\View;
+use Entities\View;
 
 class Controller
 {
