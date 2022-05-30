@@ -7,8 +7,8 @@ use Exceptions\DbException;
 
 class DataBase
 {
-    private \PDO $dbh;
-    private \PDOStatement|false $sth;
+    public \PDO $dbh;
+    public \PDOStatement|false $sth;
     public static DataBase|null $database = null;
 
     private function __construct()
@@ -52,5 +52,37 @@ class DataBase
         }
 
         return $this->sth->fetchAll(\PDO::FETCH_CLASS, $class);
+    }
+
+    /*this method only for learning purposes - to apply a generator. then
+    this method is used in Model's method FindAll */
+    public function queryEach(string $sql, string $class, array $arr)
+    {
+        $this->sth = $this->dbh->prepare($sql);
+        try {
+            $this->sth->execute($arr);
+        } catch (PDOException $e) {
+            throw new DbException('incorrect query to the database');
+        }
+
+        $result = [];
+
+        function generate($object, $class)
+        {
+            $object->sth->setFetchMode(\PDO::FETCH_CLASS, $class);
+            $element = [1, 2,];
+            while ($element != null) {
+                $element = $object->sth->fetch();
+                yield $element;
+            }
+        }
+
+        foreach (generate($this, $class) as $element) {
+            if ($element != false) {
+                $result[] = $element;
+            }
+        }
+
+        return $result;
     }
 }

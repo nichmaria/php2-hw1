@@ -16,7 +16,7 @@ abstract class Model
         $database = DataBase::make($config->dsn, $config->login, $config->password);
 
         $sql = 'SELECT * FROM ' . static::TABLE;
-        return $database->query($sql, static::class, []);
+        return $database->queryEach($sql, static::class, []);
     }
 
     public static function getById(int|null $id): static|null
@@ -30,10 +30,10 @@ abstract class Model
         if (!empty($array)) {
             return $array[0];
         }
-        if (empty($array) && static::class == 'classes\News') {
+        if (empty($array) && static::class == 'Entities\News') {
             throw new NotFoundException();
         }
-        if (empty($array) && static::class == 'classes\Author') {
+        if (empty($array) && static::class == 'Entities\Author') {
             return null;
         }
     }
