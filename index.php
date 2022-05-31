@@ -8,7 +8,6 @@ use Entities\Url;
 use Entities\View;
 use Entities\WriteLogger;
 
-
 $url = Url::make();
 $view = new View;
 $logger = new WriteLogger;

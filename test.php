@@ -1,14 +1,28 @@
 <?php
 
-echo 'test here';
+$funcOne = function (string $str) {
+    return str_replace(' ', '_', $str);
+};
 
-function generate()
+$funcTwo = function (string $str) {
+    return str_replace(' ', '000', $str);
+};
+
+$functions = [$funcOne, $funcTwo,];
+
+$one = 'fgh rtrtr mmm sgsh rhr';
+$two = 'wy ghfj hshshs trvcg jwjw';
+
+$strings = [$one, $two,];
+
+function result($strings, $functions)
 {
-    for ($x = 1; $x < 10; $x++) {
-        yield $x;
+    foreach ($strings as $object) {
+        foreach ($functions as $func) {
+            echo $func($object);
+            echo "<br>";
+        }
     }
 }
 
-foreach (generate() as $num) {
-    echo $num;
-}
+result($strings, $functions);
