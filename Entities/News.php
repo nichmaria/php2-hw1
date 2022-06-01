@@ -35,55 +35,22 @@ class News extends Model
         }
     }
 
-    public static function delete(array $list): void
+    public static function create(string $heading, string $content): void
     {
-        $config = Config::make();
-        $database = DataBase::make($config->dsn, $config->login, $config->password);
+        $new = new News();
+        $new->heading = $heading;
+        $new->content = $content;
 
-        foreach ($list as $key => $value) {
-            News::deleteById($key, $database);
-            echo 'article is successfully deleted';
-        }
+        $new->insert();
+        echo 'your record is successfully saved!';
     }
 
-    public static function create(array $income): void
+    public function edit($heading, $content): void
     {
-        if (!empty($income)) {
-            $new = new News();
-            $new->heading = $income['heading'];
-            $new->content = $income['content'];
-
-            $ex = new MultiException();
-            if ($income['heading'] == null) {
-                $ex[] =  new \Exception('empty heading!');
-            }
-            if ($income['content'] == null) {
-                $ex[] = new \Exception('empty content!');
-            }
-            $new->insert();
-            echo 'your record is successfully saved!';
-            throw $ex;
-        }
-    }
-
-    public function edit(array $income): void
-    {
-        if (!empty($income)) {
-
-            $this->heading = $income['heading'];
-            $this->content = $income['content'];
-            $this->update();
-            echo 'your record is successfully saved!';
-
-            $ex = new MultiException();
-            if ($income['heading'] == null) {
-                $ex[] =  new \Exception('empty heading!');
-            }
-            if ($income['content'] == null) {
-                $ex[] = new \Exception('empty content!');
-            }
-            throw $ex;
-        }
+        $this->heading = $heading;
+        $this->content = $content;
+        $this->update();
+        echo 'your record is successfully saved!';
     }
 
     public function getHeading(): string

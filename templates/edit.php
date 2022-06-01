@@ -23,7 +23,7 @@
     </p>
 
     <p>
-    <form action="http://php2hw1/articles/" method="post">
+    <form action="http://php2hw1/articles/delete" method="post">
         <input type="submit" value="delete article" name="<?php echo $new->id; ?>" />
     </form>
     </p>

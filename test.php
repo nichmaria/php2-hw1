@@ -1,28 +1,14 @@
 <?php
 
-$funcOne = function (string $str) {
-    return str_replace(' ', '_', $str);
-};
+$a = 2;
+$b = 4;
+$c = 7;
 
-$funcTwo = function (string $str) {
-    return str_replace(' ', '000', $str);
-};
-
-$functions = [$funcOne, $funcTwo,];
-
-$one = 'fgh rtrtr mmm sgsh rhr';
-$two = 'wy ghfj hshshs trvcg jwjw';
-
-$strings = [$one, $two,];
-
-function result($strings, $functions)
-{
-    foreach ($strings as $object) {
-        foreach ($functions as $func) {
-            echo $func($object);
-            echo "<br>";
-        }
-    }
+if ($b > $a) {
+    echo '1';
 }
-
-result($strings, $functions);
+if ($c > $b) {
+    echo '2';
+} else {
+    echo '3';
+}

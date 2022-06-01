@@ -8,7 +8,7 @@
     <title>Document</title>
     <style>
         p {
-            color: #ED614A;
+            color: #A7605A;
         }
     </style>
 </head>

@@ -39,6 +39,10 @@ class Url
                 Url::$url->action = 'Create';
                 Url::$url->id = 0;
             }
+            if (Url::$url->info[2] == 'delete') {
+                Url::$url->action = 'Delete';
+                Url::$url->id = 0;
+            }
             if (Url::$url->info[2] == null) {
                 Url::$url->action = 'Index';
                 Url::$url->id = 0;
