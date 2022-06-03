@@ -53,7 +53,7 @@ class ArticlesController extends Controller
 
     protected function actionIndex(): void
     {
-        $this->view->news = News::findAll();
+        $this->view->generator = News::findEach();
         $this->view->display(__DIR__ . '\..\templates\index.php');
     }
 

@@ -56,7 +56,7 @@ class DataBase
 
     /*this method only for learning purposes - to apply a generator. then
     this method is used in Model's method FindAll */
-    public function queryEach(string $sql, string $class, array $arr)
+    public function queryEach(string $sql, string $class, array $arr): iterable
     {
         $this->sth = $this->dbh->prepare($sql);
         try {
@@ -65,24 +65,14 @@ class DataBase
             throw new DbException('incorrect query to the database');
         }
 
-        $result = [];
-
         function generate($object, $class)
         {
             $object->sth->setFetchMode(\PDO::FETCH_CLASS, $class);
-            $element = [1, 2,];
-            while ($element != null) {
-                $element = $object->sth->fetch();
+            while ($element = $object->sth->fetch()) {
                 yield $element;
             }
         }
 
-        foreach (generate($this, $class) as $element) {
-            if ($element != false) {
-                $result[] = $element;
-            }
-        }
-
-        return $result;
+        return generate($this, $class);
     }
 }

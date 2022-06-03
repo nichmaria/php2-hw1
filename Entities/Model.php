@@ -10,13 +10,22 @@ abstract class Model
     public int $id;
 
 
-    public static function findAll(): array
+    public static function findEach(): iterable
     {
         $config = Config::make();
         $database = DataBase::make($config->dsn, $config->login, $config->password);
 
         $sql = 'SELECT * FROM ' . static::TABLE;
         return $database->queryEach($sql, static::class, []);
+    }
+
+    public static function findAll(): array
+    {
+        $config = Config::make();
+        $database = DataBase::make($config->dsn, $config->login, $config->password);
+
+        $sql = 'SELECT * FROM ' . static::TABLE;
+        return $database->query($sql, static::class, []);
     }
 
     public static function getById(int|null $id): static|null

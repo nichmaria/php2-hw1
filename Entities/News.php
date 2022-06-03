@@ -45,7 +45,7 @@ class News extends Model
         echo 'your record is successfully saved!';
     }
 
-    public function edit($heading, $content): void
+    public function edit(string $heading, string $content): void
     {
         $this->heading = $heading;
         $this->content = $content;

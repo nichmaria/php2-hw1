@@ -13,6 +13,12 @@ $url = Url::make();
 $view = new View;
 $logger = new WriteLogger;
 
+$now = Carbon::parse('2022-06-03 18:26');
+$publishedAt = Carbon::now()->subDays(3);
+$diff = $publishedAt->diffForHumans($now);
+var_dump($diff);
+var_dump($publishedAt->toDateTimeLocalString());
+
 $id = $url->getId();
 $action = $url->getAction();
 $controller = ucfirst($url->getController());

@@ -15,7 +15,8 @@
 
 <body>
     <?php
-    foreach ($news as $new) { ?>
+
+    foreach ($generator as $new) { ?>
         <p>
             <a href="articles/<?php echo $new->id; ?>">
                 <?php echo $new->getHeading();  ?>
@@ -23,7 +24,8 @@
         </p>
         <p><?php echo $new->getContent(); ?></p>
 
-    <?php } ?>
+    <?php
+    } ?>
     <p>
         <a href="articles/create">
             go to create page
