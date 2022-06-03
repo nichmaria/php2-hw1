@@ -5,18 +5,17 @@ namespace Entities;
 class AdminDataTable
 {
     private array $data;
+    protected View $view;
 
     public function __construct(array $objects, array $functions)
     {
-        $i = 0;
-        $j = 0;
-        foreach ($objects as $object) {
-            foreach ($functions as $function) {
-                $this->data[$i][$j] = $function($object);
-                $j++;
-            }
-            $i++;
-            $j = 0;
-        }
+        $this->view = new View();
+        $this->view->objects = $objects;
+        $this->view->functions = $functions;
+    }
+
+    public function render()
+    {
+        $this->view->display(__DIR__ . '\..\templates\admindatatable.php');
     }
 }

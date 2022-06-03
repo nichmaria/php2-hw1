@@ -26,25 +26,29 @@ class Url
 
         if (Url::$url->controller == 'articles') {
 
-            if ((int)Url::$url->info[2] * 2 != 0 && empty(Url::$url->info[3])) {
+            if (empty(Url::$url->info[2])) {
+                Url::$url->action = 'Index';
+                Url::$url->id = 0;
+            }
+            if (!empty(Url::$url->info[2]) && (int)Url::$url->info[2] * 2 != 0 && empty(Url::$url->info[3])) {
                 Url::$url->action = 'Show';
                 Url::$url->id = (int)Url::$url->info[2];
             }
-            if ((int)Url::$url->info[2] * 2 != 0 && !empty(Url::$url->info[3])) {
+            if (!empty(Url::$url->info[2]) && (int)Url::$url->info[2] * 2 != 0 && !empty(Url::$url->info[3])) {
                 // You can insert another "if" here to check, if info[3] == edit or something else
                 Url::$url->action = 'Edit';
                 Url::$url->id = (int)Url::$url->info[2];
             }
-            if (Url::$url->info[2] == 'create') {
+            if (!empty(Url::$url->info[2]) && Url::$url->info[2] == 'create') {
                 Url::$url->action = 'Create';
                 Url::$url->id = 0;
             }
-            if (Url::$url->info[2] == 'delete') {
+            if (!empty(Url::$url->info[2]) && Url::$url->info[2] == 'delete') {
                 Url::$url->action = 'Delete';
                 Url::$url->id = 0;
             }
-            if (Url::$url->info[2] == null) {
-                Url::$url->action = 'Index';
+            if (!empty(Url::$url->info[2]) && Url::$url->info[2] == 'admin') {
+                Url::$url->action = 'Admin';
                 Url::$url->id = 0;
             }
         }

@@ -15,29 +15,45 @@ class ArticlesController extends Controller
         $id = key($_POST);
         if (gettype($id) == 'integer') {
             News::deleteById($id);
-            $this->actionIndex();
+            header("Location: /articles");
         }
         if (gettype($id) != 'integer') {
             throw new \Exception('incorrect data for deleting');
         }
     }
 
-    protected function actionIndex(): void
+    protected function actionAdmin(): void
     {
         $this->view->news = News::findAll();
-
-        $funcOne = function ($object) {
-            return str_replace(' ', '_', $object->getContent());
+        $excerp = function ($object) {
+            $i = 70;
+            $beggining = substr($object->getContent(), 0, $i);
+            while (substr($beggining, -1) != ' ' && substr($beggining, -1) != '.') {
+                $i++;
+                $beggining = substr($object->getContent(), 0, $i);
+            }
+            return substr($beggining, 0, -1) . '...';
         };
 
         $funcTwo = function ($object) {
-            return str_replace(' ', '000', $object->getContent());
+            $i = 70;
+            $beggining = substr($object->getContent(), 0, $i);
+            while (substr($beggining, -1) != ' ' && substr($beggining, -1) != '.') {
+                $i++;
+                $beggining = substr($object->getContent(), 0, $i);
+            }
+            return substr($beggining, 0, -1) . '...';
         };
 
-        $functions = [$funcOne, $funcTwo,];
+        $functions = [$excerp, $funcTwo,];
 
         $table = new AdminDataTable($this->view->news, $functions);
+        $table->render();
+    }
 
+    protected function actionIndex(): void
+    {
+        $this->view->news = News::findAll();
         $this->view->display(__DIR__ . '\..\templates\index.php');
     }
 

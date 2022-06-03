@@ -17,7 +17,7 @@
     <?php
     foreach ($news as $new) { ?>
         <p>
-            <a href="<?php echo $new->id; ?>">
+            <a href="articles/<?php echo $new->id; ?>">
                 <?php echo $new->getHeading();  ?>
             </a>
         </p>
@@ -25,7 +25,7 @@
 
     <?php } ?>
     <p>
-        <a href="create">
+        <a href="articles/create">
             go to create page
         </a>
     </p>

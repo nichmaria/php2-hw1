@@ -7,6 +7,7 @@ use Exceptions\NotFoundException;
 use Entities\Url;
 use Entities\View;
 use Entities\WriteLogger;
+use Carbon\Carbon;
 
 $url = Url::make();
 $view = new View;
