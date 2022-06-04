@@ -29,25 +29,20 @@ class Url
             if (empty(Url::$url->info[2])) {
                 Url::$url->action = 'Index';
                 Url::$url->id = 0;
-            }
-            if (!empty(Url::$url->info[2]) && (int)Url::$url->info[2] * 2 != 0 && empty(Url::$url->info[3])) {
+            } elseif ((int)Url::$url->info[2] * 2 != 0 && empty(Url::$url->info[3])) {
                 Url::$url->action = 'Show';
                 Url::$url->id = (int)Url::$url->info[2];
-            }
-            if (!empty(Url::$url->info[2]) && (int)Url::$url->info[2] * 2 != 0 && !empty(Url::$url->info[3])) {
+            } elseif ((int)Url::$url->info[2] * 2 != 0 && !empty(Url::$url->info[3])) {
                 // You can insert another "if" here to check, if info[3] == edit or something else
                 Url::$url->action = 'Edit';
                 Url::$url->id = (int)Url::$url->info[2];
-            }
-            if (!empty(Url::$url->info[2]) && Url::$url->info[2] == 'create') {
+            } elseif (Url::$url->info[2] == 'create') {
                 Url::$url->action = 'Create';
                 Url::$url->id = 0;
-            }
-            if (!empty(Url::$url->info[2]) && Url::$url->info[2] == 'delete') {
+            } elseif (Url::$url->info[2] == 'delete') {
                 Url::$url->action = 'Delete';
                 Url::$url->id = 0;
-            }
-            if (!empty(Url::$url->info[2]) && Url::$url->info[2] == 'admin') {
+            } elseif (Url::$url->info[2] == 'admin') {
                 Url::$url->action = 'Admin';
                 Url::$url->id = 0;
             }

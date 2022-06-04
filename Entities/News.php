@@ -35,21 +35,13 @@ class News extends Model
         }
     }
 
-    public static function create(string $heading, string $content): void
+    public static function createNew(string $heading, string $content): void
     {
         $new = new News();
         $new->heading = $heading;
         $new->content = $content;
 
         $new->insert();
-        echo 'your record is successfully saved!';
-    }
-
-    public function edit(string $heading, string $content): void
-    {
-        $this->heading = $heading;
-        $this->content = $content;
-        $this->update();
         echo 'your record is successfully saved!';
     }
 

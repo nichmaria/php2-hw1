@@ -95,7 +95,7 @@ class ArticlesController extends Controller
                     throw $ex;
                 }
 
-                News::create($heading, $content);
+                News::createNew($heading, $content);
             } catch (MultiException $ex) {
                 $this->view->errors = $ex;
             }
@@ -112,6 +112,7 @@ class ArticlesController extends Controller
             $heading = $_POST['heading'];
             $content = $_POST['content'];
 
+            $info = ['heading' => $_POST['heading'], 'content' => $_POST['content'],];
             $ex = new MultiException();
 
             if (gettype($heading) != 'string') {
@@ -132,7 +133,7 @@ class ArticlesController extends Controller
                     throw $ex;
                 }
 
-                $this->view->new->edit($heading, $content);
+                $this->view->new->edit($info);
             } catch (MultiException $ex) {
                 $this->view->errors = $ex;
             }

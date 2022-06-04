@@ -70,7 +70,7 @@ abstract class Model
 
         $substitution = [':id' => $id];
         $sql = 'DELETE FROM ' . static::TABLE . ' WHERE id = :id';
-        $array = $database->execute($sql, $substitution);
+        $database->execute($sql, $substitution);
         return true;
     }
 
@@ -128,5 +128,14 @@ abstract class Model
         $sql = 'UPDATE ' .  static::TABLE . ' SET ' . implode(', ', $preparation) . ' WHERE  `id`=' . $this->id;
         $database->execute($sql,  $substitutions);
         return true;
+    }
+
+    public function edit(array $info): void
+    {
+        foreach ($info as $key => $value) {
+            $this->$key = $value;
+        }
+        $this->update();
+        echo 'your record is successfully saved!';
     }
 }

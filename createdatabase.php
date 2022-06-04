@@ -1,10 +1,10 @@
 <?php
 
-require __DIR__ . '/classes/DataBase.php';
-require __DIR__ . '/classes/Config.php';
+require __DIR__ . '/Entities/DataBase.php';
+require __DIR__ . '/Entities/Config.php';
 
-use classes\Config;
-use classes\DataBase;
+use Entities\Config;
+use Entities\DataBase;
 
 $config = Config::make();
 $database = new DataBase($config->dsn, $config->login, $config->password);
